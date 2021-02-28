@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="Numbers Inspector"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Numbers Inspector</title>
+  </head>
+  <body>
+    <header>
+      <h1>Numbers Inspector</h1>
+    </header>
+    <section>
+      <div>
+        <p>
+          Insert numbers between 0 and 100:
+          <input type="number" name="txtnum" id="txtnum" />
+          <input type="button" value="Insert" id="insertbtn" />
+          <p id="txtalert"></p>
+        </p>
+        <p>
+          <select name="seltab" id="seltab"></select>
+          <option value="">...</option>
+          <input type="button" value="Inspect" />
+        </p>
+      </div>
+      <p id="outcome">...</p>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
