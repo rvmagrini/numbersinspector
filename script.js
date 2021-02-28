@@ -2,44 +2,48 @@
 
 let numbersArr = [];
 
-document.getElementById("insertbtn").addEventListener("click", function () {
-  let txtNum = document.getElementById("txtnum").value;
-  let txtAlert = document.getElementById("txtalert");
-  let selTab = document.getElementById("seltab");
-  let inspection = document.getElementById("inspection");
+let txtNum = document.getElementById("txtnum");
+let txtAlert = document.getElementById("txtalert");
+let selTab = document.getElementById("seltab");
+let inspection = document.getElementById("inspection");
 
+document.getElementById("insertbtn").addEventListener("click", function () {
   inspection.innerHTML = "";
 
-  if (txtNum.length === 0) {
+  if (txtNum.value.length === 0) {
     txtAlert.textContent = `Please insert a number between 1 and 100.`;
+    txtNum.focus();
   } else {
-    let number = Number(txtNum);
+    let number = Number(txtNum.value);
     if (number < 1 || number > 100) {
       txtAlert.textContent = `Please insert a number between 1 and 100.`;
+      txtNum.value = "";
+      txtNum.focus();
     } else if (numbersArr.includes(number)) {
       txtAlert.textContent = `Number ${number} has already been added. Try another one.`;
+      txtNum.value = "";
+      txtNum.focus();
     } else {
       txtAlert.textContent = "";
+      txtNum.value = "";
+      txtNum.focus();
 
       // Array pushing
       numbersArr.push(number);
 
       // New select option
-      let tabOpt = document.getElementById("tabopt");
-      tabOpt.innerHTML = "";
 
       let newOpt = document.createElement("option");
-      newOpt.text = `Número ${number} added.`;
+      newOpt.text = `Number ${number} inserted.`;
       selTab.appendChild(newOpt);
     }
   }
 });
 
 document.getElementById("inspectbtn").addEventListener("click", function () {
-  let inspection = document.getElementById("inspection");
-
   if (numbersArr.length === 0) {
     inspection.innerHTML = `Insert numbers before inspecting.`;
+    txtNum.focus();
   } else {
     let amount = numbersArr.length;
     inspection.innerHTML = `<p>Amount of numbers inserted: ${amount}.</p>`;
