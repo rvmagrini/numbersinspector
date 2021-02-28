@@ -4,31 +4,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
-      name="Multiplication Table"
+      name="Numbers Inspector"
       content="width=device-width, initial-scale=1.0"
     />
 
     <link rel="stylesheet" href="css/style.css" />
 
-    <title>Multiplication Table</title>
+    <title>Numbers Inspector</title>
   </head>
   <body>
     <header>
-      <h1>Multiplication Table</h1>
+      <h1>Numbers Inspector</h1>
     </header>
     <section>
       <div>
         <p>
-          Number:
-          <input type="number" name="number" id="txtnumber" />
-          <input type="button" value="Generate" id="generate" />
+          Insert numbers between 1 and 100:
+          <input type="number" name="txtnum" id="txtnum" />
+          <input type="button" value="Insert" id="insertbtn" />
+          <p id="txtalert"></p>
         </p>
         <p>
-          <select name="seltable" id="seltable" size="10">
-            <option value="tableopt" id="tableopt">Type a Number.</option>
+          <select name="seltab" id="seltab" size="100">
+            <option value="tabopt" id="tabopt">Insert numbers...</option>
           </select>
         </p>
+        <p><input type="button" value="Inspect" id="inspectbtn" /></p>
       </div>
+      <p id="inspection">...</p>
     </section>
 
     <script src="script.js"></script>

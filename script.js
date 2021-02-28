@@ -1,26 +1,56 @@
 "use strict";
 
-// Taggin elements
+let numbersArr = [];
 
-document.getElementById("generate").addEventListener("click", function () {
-  let selTable = document.getElementById("seltable");
-  let txtNumber = document.getElementById("txtnumber").value;
+document.getElementById("insertbtn").addEventListener("click", function () {
+  let txtNum = document.getElementById("txtnum").value;
+  let txtAlert = document.getElementById("txtalert");
+  let selTab = document.getElementById("seltab");
+  let inspection = document.getElementById("inspection");
 
-  if (txtNumber.length === 0) {
-    alert("Please type a number.");
+  inspection.innerHTML = "";
+
+  if (txtNum.length === 0) {
+    txtAlert.textContent = `Please insert a number between 1 and 100.`;
   } else {
-    let number = Number(txtNumber);
-    selTable.innerHTML = `Pick a number and click on Generate.`;
-
-    if (number === 0) {
-      alert("Please pick a number greater than 0.");
+    let number = Number(txtNum);
+    if (number < 1 || number > 100) {
+      txtAlert.textContent = `Please insert a number between 1 and 100.`;
+    } else if (numbersArr.includes(number)) {
+      txtAlert.textContent = `Number ${number} has already been added. Try another one.`;
     } else {
-      for (let i = 1; i <= 10; i++) {
-        let newOpt = document.createElement("option");
-        newOpt.text = `${number} x ${i} = ${number * i}`;
-        newOpt.value = `mtab${i}`;
-        selTable.appendChild(newOpt);
-      }
+      txtAlert.textContent = "";
+
+      // Array pushing
+      numbersArr.push(number);
+
+      // New select option
+      let tabOpt = document.getElementById("tabopt");
+      tabOpt.innerHTML = "";
+
+      let newOpt = document.createElement("option");
+      newOpt.text = `Número ${number} added.`;
+      selTab.appendChild(newOpt);
     }
   }
+});
+
+document.getElementById("inspectbtn").addEventListener("click", function () {
+  let inspection = document.getElementById("inspection");
+
+  let amount = numbersArr.length;
+  inspection.innerHTML = `<p>Amount of numbers inserted: ${amount}.</p>`;
+
+  let largest = Math.max(...numbersArr);
+  inspection.innerHTML += `<p>Largest number inserted: ${largest}.</p>`;
+
+  let lowest = Math.min(...numbersArr);
+  inspection.innerHTML += `<p>Lowest number inserted: ${lowest}.</p>`;
+
+  let sum = numbersArr.reduce((acc, cur) => (acc += cur));
+  inspection.innerHTML += `<p>Sum of numbers inserted: ${sum}.</p>`;
+
+  // Average
+  let avg = (sum / amount).toFixed(2);
+  inspection.innerHTML += `<p>Average of numbers inserted: ${avg}.`;
 });
