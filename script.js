@@ -1,19 +1,26 @@
 "use strict";
 
-document.getElementById("insertbtn").addEventListener("click", function () {
-  let txtNum = document.getElementById("txtnum").value;
-  let txtAlert = document.getElementById("txtalert");
+// Taggin elements
 
-  if (txtNum.length === 0) {
-    txtAlert.textContent = `Please insert a number between 0 and 100.`;
+document.getElementById("generate").addEventListener("click", function () {
+  let selTable = document.getElementById("seltable");
+  let txtNumber = document.getElementById("txtnumber").value;
+
+  if (txtNumber.length === 0) {
+    alert("Please type a number.");
   } else {
-    let number = Number(txtNum);
-    if (number < 0 || number > 100) {
-      txtAlert.textContent = `Please insert a number between 0 and 100.`;
+    let number = Number(txtNumber);
+    selTable.innerHTML = `Pick a number and click on Generate.`;
+
+    if (number === 0) {
+      alert("Please pick a number greater than 0.");
     } else {
-      txtAlert.textContent = "";
+      for (let i = 1; i <= 10; i++) {
+        let newOpt = document.createElement("option");
+        newOpt.text = `${number} x ${i} = ${number * i}`;
+        newOpt.value = `mtab${i}`;
+        selTable.appendChild(newOpt);
+      }
     }
   }
 });
-
-let numbersArr = [];
