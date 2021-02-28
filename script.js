@@ -38,19 +38,22 @@ document.getElementById("insertbtn").addEventListener("click", function () {
 document.getElementById("inspectbtn").addEventListener("click", function () {
   let inspection = document.getElementById("inspection");
 
-  let amount = numbersArr.length;
-  inspection.innerHTML = `<p>Amount of numbers inserted: ${amount}.</p>`;
+  if (numbersArr.length === 0) {
+    inspection.innerHTML = `Insert numbers before inspecting.`;
+  } else {
+    let amount = numbersArr.length;
+    inspection.innerHTML = `<p>Amount of numbers inserted: ${amount}.</p>`;
 
-  let largest = Math.max(...numbersArr);
-  inspection.innerHTML += `<p>Largest number inserted: ${largest}.</p>`;
+    let largest = Math.max(...numbersArr);
+    inspection.innerHTML += `<p>Largest number inserted: ${largest}.</p>`;
 
-  let lowest = Math.min(...numbersArr);
-  inspection.innerHTML += `<p>Lowest number inserted: ${lowest}.</p>`;
+    let lowest = Math.min(...numbersArr);
+    inspection.innerHTML += `<p>Lowest number inserted: ${lowest}.</p>`;
 
-  let sum = numbersArr.reduce((acc, cur) => (acc += cur));
-  inspection.innerHTML += `<p>Sum of numbers inserted: ${sum}.</p>`;
+    let sum = numbersArr.reduce((acc, cur) => (acc += cur));
+    inspection.innerHTML += `<p>Sum of numbers inserted: ${sum}.</p>`;
 
-  // Average
-  let avg = (sum / amount).toFixed(2);
-  inspection.innerHTML += `<p>Average of numbers inserted: ${avg}.`;
+    let avg = (sum / amount).toFixed(2);
+    inspection.innerHTML += `<p>Average of numbers inserted: ${avg}.`;
+  }
 });
