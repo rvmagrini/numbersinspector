@@ -4,7 +4,7 @@ let numbersArr = [];
 
 let txtNum = document.getElementById("txtnum");
 let txtAlert = document.getElementById("txtalert");
-let selTab = document.getElementById("seltab");
+let ulEl = document.getElementById("ulel");
 let inspection = document.getElementById("inspection");
 
 document.getElementById("insertbtn").addEventListener("click", function () {
@@ -31,11 +31,10 @@ document.getElementById("insertbtn").addEventListener("click", function () {
       // Array pushing
       numbersArr.push(number);
 
-      // New select option
-
-      let newOpt = document.createElement("option");
-      newOpt.text = `Number ${number} inserted.`;
-      selTab.appendChild(newOpt);
+      // New item
+      const newLi = document.createElement("li");
+      newLi.appendChild(document.createTextNode(`Number ${number} inserted.`));
+      ulEl.appendChild(newLi);
     }
   }
 });
@@ -55,7 +54,7 @@ document.getElementById("inspectbtn").addEventListener("click", function () {
     inspection.innerHTML += `<p>Lowest number inserted: ${lowest}.</p>`;
 
     let sum = numbersArr.reduce((acc, cur) => (acc += cur));
-    inspection.innerHTML += `<p>Sum of numbers inserted: ${sum}.</p>`;
+    inspection.innerHTML += `<p>Sum of the numbers inserted: ${sum}.</p>`;
 
     let avg = (sum / amount).toFixed(2);
     inspection.innerHTML += `<p>Average of numbers inserted: ${avg}.`;
